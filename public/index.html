@@ -25,12 +25,18 @@ canvas {
  
   // an attribute will receive data from a buffer
   attribute vec4 a_position;
+  uniform vec4 u_rotation;
   uniform vec2 u_resolution;
  
   // all shaders have a main function
   void main() {
- 
-    vec2 zeroToOne = a_position.xy / u_resolution;
+    mat2 m_rotation;
+    m_rotation = mat2(u_rotation.xy,
+                      u_rotation.zw);
+    vec2 r_position;
+    r_position = m_rotation * a_position.xy;
+    
+    vec2 zeroToOne = r_position / u_resolution;
     vec2 zeroToTwo = zeroToOne * 2.0;
     vec2 clipSpace = zeroToTwo - 1.0;
     // gl_Position is a special variable a vertex shader
@@ -47,11 +53,11 @@ canvas {
   // fragment shaders don't have a default precision so we need
   // to pick one. mediump is a good default
   precision mediump float;
+  
+  uniform vec4 u_color;
  
   void main() {
-    // gl_FragColor is a special variable a fragment shader
-    // is responsible for setting
-    gl_FragColor = vec4(0, 1, 0.9, 1); // return RGBA 
+    gl_FragColor = u_color;
   }
 </script>
 <!--- FRAGMENT SHADER END --->
@@ -121,7 +127,9 @@ var fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
 
 var program = createProgram(gl, vertexShader, fragmentShader);
 
+var colorUniformLocation = gl.getUniformLocation(program, "u_color");
 var resolutionUniformLocation = gl.getUniformLocation(program, "u_resolution");
+var rotationUniformLocation = gl.getUniformLocation(program, "u_rotation");
 
 var positionAttributeLocation = gl.getAttribLocation(program, "a_position");
 var positionBuffer = gl.createBuffer();
@@ -170,13 +178,19 @@ var offset = 0;        // start at the beginning of the buffer
 gl.vertexAttribPointer(
     positionAttributeLocation, size, type, normalize, stride, offset)
     
-gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
-
 var primitiveType = gl.TRIANGLES;
 var offset = 0;
 var count = positions.length/size;
 
-gl.drawArrays(primitiveType, offset, count);
+for(var ii=0;ii<=500;ii++){
+    var theta = 1/ii;
+    gl.uniform2f(resolutionUniformLocation, gl.canvas.width, gl.canvas.height);
+    gl.uniform4f(rotationUniformLocation, Math.cos(theta), (-1 * Math.sin(theta)), Math.sin(theta), Math.cos(theta));
+    gl.uniform4f(colorUniformLocation, Math.random(), Math.random(), Math.random(), 1);
+
+    gl.drawArrays(primitiveType, offset, count);
+}
+
 
 
 </script>
