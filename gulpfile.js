@@ -9,7 +9,7 @@ var path = require('path');
 
 const port = "8080";
 const publicDir = "public";
-const indexPage = publicDir + "/index.html";
+const indexPage = "index.html";
 
 gulp.task('launch:node', function(){
     let deferred = Q.defer();
