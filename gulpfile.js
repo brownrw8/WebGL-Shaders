@@ -6,10 +6,11 @@ var ecstatic = require('ecstatic');
 var browserSync = require('browser-sync').create();
 var Q = require('q');
 var path = require('path');
+var argv = require('yargs').argv;
 
 const port = "8080";
 const publicDir = "public";
-const indexPage = "index.html";
+const indexPage = argv.page;
 
 gulp.task('launch:node', function(){
     let deferred = Q.defer();
