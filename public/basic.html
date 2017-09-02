@@ -20,7 +20,7 @@ canvas {
 
 <canvas id="c"></canvas>
 
-<!--- VERTEX SHADER BEGIN --->
+<!-- VERTEX SHADER BEGIN -->
 <script id="2d-vertex-shader" type="notjs">
  
   // an attribute will receive data from a buffer
@@ -45,9 +45,9 @@ canvas {
     gl_Position = vec4(udClipSpace, 0, 1);
   }
 </script>
-<!--- VERTEX SHADER END -->
+<!-- VERTEX SHADER END -->
 
-<!--- FRAGMENT SHADER BEGIN --->
+<!-- FRAGMENT SHADER BEGIN -->
 <script id="2d-fragment-shader" type="notjs">
  
   // fragment shaders don't have a default precision so we need
@@ -60,9 +60,9 @@ canvas {
     gl_FragColor = u_color;
   }
 </script>
-<!--- FRAGMENT SHADER END --->
+<!-- FRAGMENT SHADER END -->
 
-<!--- FUNCTIONSDEF BEGIN --->
+<!-- FUNCTIONSDEF BEGIN -->
 <script id="my-functions-def">
 function createShader(gl, type, source) {
     var shader = gl.createShader(type);
@@ -107,9 +107,9 @@ function resize(canvas) {
 }
 
 </script>
-<!--- FUNCTIONSDEF END -->
+<!-- FUNCTIONSDEF END -->
 
-<!--- CONTROL BEGIN --->
+<!-- CONTROL BEGIN -->
 <script id="my-control-flow">
 var canvas = document.getElementById("c");
 var gl = canvas.getContext("webgl");
@@ -207,7 +207,7 @@ function render() {
 
 
 </script>
-<!--- CONTROL END --->
+<!-- CONTROL END -->
 
 
 
