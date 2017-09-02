@@ -20,7 +20,7 @@ canvas {
 
 <canvas id="c"></canvas>
 
-<!--- VERTEX SHADER BEGIN --->
+<!-- VERTEX SHADER BEGIN -->
 <script id="2d-vertex-shader" type="notjs">
     attribute vec2 a_position;
     attribute vec2 a_texCoord;
@@ -42,9 +42,9 @@ canvas {
     }
     
 </script>
-<!--- VERTEX SHADER END -->
+<!-- VERTEX SHADER END -->
 
-<!--- FRAGMENT SHADER BEGIN --->
+<!-- FRAGMENT SHADER BEGIN -->
 <script id="2d-fragment-shader" type="x-shader/x-fragment">
 
     precision mediump float;
@@ -61,9 +61,9 @@ canvas {
     }
     
 </script>
-<!--- FRAGMENT SHADER END --->
+<!-- FRAGMENT SHADER END -->
 
-<!--- FUNCTIONSDEF BEGIN --->
+<!-- FUNCTIONSDEF BEGIN -->
 <script id="my-functions-def">
 function createShader(gl, type, source) {
     var shader = gl.createShader(type);
@@ -115,9 +115,9 @@ function setGeometry(gl, data) {
 }
 
 </script>
-<!--- FUNCTIONSDEF END -->
+<!-- FUNCTIONSDEF END -->
 
-<!--- CONTROL BEGIN --->
+<!-- CONTROL BEGIN -->
 <script id="my-control-flow">
 var canvas = document.getElementById("c");
 var gl = canvas.getContext("webgl");
@@ -226,7 +226,7 @@ function render() {
 
 
 </script>
-<!--- CONTROL END --->
+<!-- CONTROL END -->
 
 
 
